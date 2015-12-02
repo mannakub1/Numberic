@@ -1,5 +1,6 @@
 package com.example.manny.numberic;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Button;
@@ -17,11 +18,14 @@ import java.util.Random;
 public class GameActivity extends AppCompatActivity {
 
     Random ran = new Random();
+    static int level;
     static int currentNum = 0;
-    static int indexPreNum = 0;
-    static int preNum[] = new int[25];
-    static int indexPostNum = 0;
-    static int postNum[] = new int[25];
+    static int index1st = 0;
+    static int num1st[] = new int[25];
+    static int index2nd = 0;
+    static int num2nd[] = new int[25];
+    static int index3rd = 0;
+    static int num3rd[] = new int[25];
     static int usedColor[] = new int[25];
     static String colorList[] = {"#da2020", "#107ea8", "#99cc00", "#aa66cc", "#ff8800",
             "#dd00cd", "#951add", "#5342d6", "#957451", "#00e248",
@@ -60,12 +64,41 @@ public class GameActivity extends AppCompatActivity {
         final Button number24 = (Button) findViewById(R.id.number24);
         final Button number25 = (Button) findViewById(R.id.number25);
         final TextView tv = (TextView) findViewById(R.id.textView);
+        final TextView lvl = (TextView) findViewById(R.id.textView2);
+        final TextView timing = (TextView) findViewById(R.id.textView3);
 
-        preNum = randomNumber1st();
-        usedColor = reset(usedColor);
+        Intent i = getIntent();
+        if (i.getIntExtra("lvl", 1) == 1) {
+            lvl.setText("Level : Easy"); //1-25
+            level = 1;
+            num1st = reset(num1st);
+            num2nd = reset(num2nd);
+            num3rd = reset(num3rd);
+            randomNumber1st();
+        } else if (i.getIntExtra("lvl", 1) == 2) {
+            lvl.setText("Level : Medium"); //1-50
+            level = 2;
+            num1st = reset(num1st);
+            num2nd = reset(num2nd);
+            num3rd = reset(num3rd);
+            randomNumber1st();
+            randomNumber2nd();
+        } else {
+            lvl.setText("Level : Hard"); //1-75
+            level = 3;
+            num1st = reset(num1st);
+            num2nd = reset(num2nd);
+            num3rd = reset(num3rd);
+            randomNumber1st();
+            randomNumber2nd();
+            randomNumber3rd();
+        }
+
+        Log.i("End","random 3 rd");
         currentNum = 0;
-        indexPostNum = 0;
-        indexPreNum = 0;
+        index1st = 0;
+        index2nd = 0;
+        index3rd = 0;
         tv.setText("Current Number : 0");
         setBtn(number1);
         setBtn(number2);
@@ -94,7 +127,6 @@ public class GameActivity extends AppCompatActivity {
         setBtn(number25);
 
         usedColor = reset(usedColor);
-        postNum = randomNumber2nd();
         number1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -247,21 +279,91 @@ public class GameActivity extends AppCompatActivity {
         });
     }
 
-    public int[] randomNumber1st() { //random number stage 1st
+    public void checkAns(Button btn, TextView tv) {
+        int num = Integer.parseInt(btn.getText().toString());
+        Animation fadeOut = new AlphaAnimation(1, 0);
+        fadeOut.setInterpolator(new AccelerateInterpolator());
+        fadeOut.setDuration(500);
+        if (currentNum < 25) { //1st stage
+            if (num == currentNum + 1) { //correct
+                if (level == 1) {
+                    btn.setAnimation(fadeOut);
+                    btn.setVisibility(View.INVISIBLE);
+                    currentNum = num;
+                    tv.setText("Current Number : " + currentNum);
+                    if (currentNum == 25) {
+                        num1st = reset(num1st);
+                        //end game of easy mode
+                    }
+                } else {
+                    CharSequence changNum = String.valueOf(num2nd[index2nd]);
+                    btn.setText(changNum);
+                    btn.setBackgroundColor(randomBGC());
+                    currentNum = num;
+                    tv.setText("Current Number : " + currentNum);
+                    ++index2nd;
+                }
+            } else { //wrong
+
+            }
+        } else if (currentNum < 50) { //2nd stage
+            if (num == currentNum + 1) { //correct
+                if (level == 2) {
+                    btn.setAnimation(fadeOut);
+                    btn.setVisibility(View.INVISIBLE);
+                    currentNum = num;
+                    tv.setText("Current Number : " + currentNum);
+                    if (currentNum == 50) {
+                        num1st = reset(num1st);
+                        num2nd = reset(num2nd);
+                        //end game of medium mode
+                    }
+                } else {
+                    CharSequence changNum = String.valueOf(num3rd[index3rd]);
+                    btn.setText(changNum);
+                    btn.setBackgroundColor(randomBGC());
+                    currentNum = num;
+                    tv.setText("Current Number : " + currentNum);
+                    ++index3rd;
+                    if (currentNum == 50) {
+                        usedColor = reset(usedColor); //reset colorlist for next stage
+                    }
+                }
+            } else { //wrong
+
+            }
+        } else { //3rd stage
+            if (num == currentNum + 1) { //correct
+                btn.setAnimation(fadeOut);
+                btn.setVisibility(View.INVISIBLE);
+                currentNum = num;
+                tv.setText("Current Number : " + currentNum);
+                if (currentNum == 75) {
+                    num1st = reset(num1st);
+                    num2nd = reset(num2nd);
+                    num3rd = reset(num3rd);
+                    //end game of hard mode
+                }
+            } else { //wrong
+
+            }
+        }
+    }
+
+    public void randomNumber1st() { //random number stage 1st
         int num, i = 0, c;
-        int preNum[] = new int[25];
         while (true) {
             num = ran.nextInt(25);
             ++num;
             c = 0;
             for (int j = 0; j < 25; j++) {
-                if (num != preNum[j]) {
+                if (num != num1st[j]) {
                     ++c;
                 }
             }
             if (c == 25) {
-                preNum[i] = num;
-                Log.i("PreNum", String.valueOf(preNum[i]));
+                num1st[i] = num;
+                Log.i("1stNum", String.valueOf(num1st[i]));
                 i++;
                 c = 0;
             }
@@ -269,25 +371,22 @@ public class GameActivity extends AppCompatActivity {
                 break;
             }
         }
-        return preNum;
     }
 
-
-    public int[] randomNumber2nd() { //random number 2nd stage
+    public void randomNumber2nd() { //random number 2nd stage
         int num, i = 0, c;
-        int preNum[] = new int[25];
         while (true) {
             num = ran.nextInt(25);
             num += 26;
             c = 0;
             for (int j = 0; j < 25; j++) {
-                if (num != preNum[j]) {
+                if (num != num2nd[j]) {
                     ++c;
                 }
             }
             if (c == 25) {
-                preNum[i] = num;
-                Log.i("PreNum", String.valueOf(preNum[i]));
+                num2nd[i] = num;
+                Log.i("2ndtNum", String.valueOf(num2nd[i]));
                 i++;
                 c = 0;
             }
@@ -295,50 +394,40 @@ public class GameActivity extends AppCompatActivity {
                 break;
             }
         }
-        return preNum;
     }
 
+    private void randomNumber3rd() {
+        int num, i = 0, c;
+        while (true) {
+            num = ran.nextInt(25);
+            num += 26;
+            c = 0;
+            for (int j = 0; j < 25; j++) {
+                if (num != num3rd[j]) {
+                    ++c;
+                }
+            }
+            if (c == 25) {
+                num3rd[i] = num;
+                Log.i("3rdNum", String.valueOf(num3rd[i]));
+                i++;
+                c = 0;
+            }
+            if (i == 25) {
+                break;
+            }
+        }
+    }
 
     public void setBtn(Button btn) { //set button when game start
         Animation fadeIn = new AlphaAnimation(0, 1);
         fadeIn.setInterpolator(new AccelerateInterpolator());
         fadeIn.setDuration(500);
         btn.setBackgroundColor(randomBGC());
-        btn.setText(String.valueOf(preNum[indexPreNum]));
-        ++indexPreNum;
+        btn.setText(String.valueOf(num1st[index1st]));
+        ++index1st;
         btn.startAnimation(fadeIn);
     }
-
-
-    public void checkAns(Button btn, TextView tv) {
-        int num = Integer.parseInt(btn.getText().toString());
-        Animation fadeOut = new AlphaAnimation(1, 0);
-        fadeOut.setInterpolator(new AccelerateInterpolator());
-        fadeOut.setDuration(500);
-        if (currentNum <= 24) { //1st stage
-            if (num == currentNum + 1) { //correct
-                CharSequence changNum = String.valueOf(postNum[indexPostNum]);
-                btn.setText(changNum);
-                btn.setBackgroundColor(randomBGC());
-                currentNum = num;
-                tv.setText("Current Number : " + currentNum);
-                ++indexPostNum;
-            } else { //wrong
-
-            }
-        } else { //2nd stage
-            if (num == currentNum + 1) { //correct
-                btn.setAnimation(fadeOut);
-                btn.setVisibility(View.INVISIBLE);
-                currentNum = num;
-                tv.setText("Current Number : " + currentNum);
-            } else { //wrong
-
-            }
-        }
-        //end game at 50
-    }
-
 
     public int randomBGC() {
         int ranColor;
