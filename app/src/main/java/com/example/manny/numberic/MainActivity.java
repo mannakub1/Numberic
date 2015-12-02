@@ -17,7 +17,7 @@ import com.example.manny.numberic.model.model;
 
 public class MainActivity extends AppCompatActivity {
 
-    private String[] Level={"Easy", "Mediuun", "Hard"};
+    private String[] Level = {"Easy", "Medium", "Hard"};
 
 
     @Override
@@ -26,13 +26,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-
         Button startGame = (Button) findViewById(R.id.Start_button);
         startGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(MainActivity.this, GameActivity.class);
-                startActivity(i);
+                select_level();
             }
         });
 
@@ -48,28 +46,31 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // For GameActivity
-    public void select_level(){
+    public void select_level() {
         new AlertDialog.Builder(MainActivity.this)
                 .setTitle("Please Select Level")
                 .setItems(Level, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         String select = Level[which];
-                        if(select.equals("Easy")) {
-
+                        if (select.equals("Easy")) {
+                            Intent i = new Intent(MainActivity.this, GameActivity.class);;
+                            i.putExtra("lvl", 1);
+                            startActivity(i);
+                        } else if (select.equals("Medium")) {
+                            Intent i = new Intent(MainActivity.this, GameActivity.class);
+                            i.putExtra("lvl", 2);
+                            startActivity(i);
+                        } else {
+                            Intent i = new Intent(MainActivity.this, GameActivity.class);
+                            i.putExtra("lvl", 3);
+                            startActivity(i);
                         }
-                        else if(select.equals("Medium")){
-
-                        }
-                        else{
-
-                        }
-            }
-        })
+                    }
+                })
                 .create()
                 .show();
     }
-
 
 
 }

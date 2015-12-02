@@ -9,129 +9,469 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.number.GameActivity">
 
-    <FrameLayout
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/frame"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="145dp"
+        android:layout_marginBottom="40dp">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="0dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="0dp">
+
+            <Button
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:text="1"
+                android:id="@+id/number1"
+                android:background="#da2020"
+                android:visibility="visible"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_column="0"
+                android:layout_margin="5dp"
+                android:textSize="50px"
+                android:textColor="#fff"
+                style="@android:style/Animation.Activity"/>
+
+            <Button
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:text="2"
+                android:id="@+id/number2"
+                android:visibility="visible"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:background="#107ea8"
+                android:layout_column="1"
+                android:layout_margin="5dp"
+                android:textSize="50px"
+                android:textColor="#fff" />
+
+            <Button
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:text="3"
+                android:id="@+id/number3"
+                android:layout_below="@+id/number2"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:visibility="visible"
+                android:background="#99cc00"
+                android:layout_column="2"
+                android:layout_margin="5dp"
+                android:textSize="50px"
+                android:textColor="#fff" />
+
+            <Button
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:text="4"
+                android:id="@+id/number4"
+                android:background="#aa66cc"
+                android:visibility="visible"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_column="3"
+                android:layout_margin="5dp"
+                android:textSize="50px"
+                android:textColor="#fff" />
+
+            <Button
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:text="5"
+                android:id="@+id/number5"
+                android:background="#ff8800"
+                android:visibility="visible"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_column="4"
+                android:layout_margin="5dp"
+                android:textSize="50px"
+                android:textColor="#fff" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="0dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="60dp">
+
+            <Button
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:text="6"
+                android:id="@+id/number6"
+                android:background="#dd00cd"
+                android:visibility="visible"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_column="0"
+                android:layout_margin="5dp"
+                android:textSize="50px"
+                android:textColor="#fff" />
+
+            <Button
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/number7"
+                android:background="#951add"
+                android:visibility="visible"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_column="1"
+                android:layout_margin="5dp"
+                android:text="7"
+                android:textSize="50px"
+                android:textColor="#fff" />
+
+            <Button
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:text="8"
+                android:id="@+id/number8"
+                android:background="#5342d6"
+                android:visibility="visible"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_column="2"
+                android:layout_margin="5dp"
+                android:textSize="50px"
+                android:textColor="#fff" />
+
+            <Button
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:text="9"
+                android:id="@+id/number9"
+                android:background="#957451"
+                android:visibility="visible"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_column="3"
+                android:layout_margin="5dp"
+                android:textSize="50px"
+                android:textColor="#fff" />
+
+            <Button
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:text="10"
+                android:id="@+id/number10"
+                android:background="#00e248"
+                android:visibility="visible"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_column="4"
+                android:layout_margin="5dp"
+                android:textSize="50px"
+                android:textColor="#fff" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="0dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="120dp">
+
+            <Button
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:text="11"
+                android:id="@+id/number11"
+                android:background="#1f26ff"
+                android:visibility="visible"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_column="0"
+                android:layout_margin="5dp"
+                android:textSize="50px"
+                android:textColor="#fff" />
+
+            <Button
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:text="12"
+                android:id="@+id/number12"
+                android:background="#c07000"
+                android:visibility="visible"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_column="1"
+                android:layout_margin="5dp"
+                android:textSize="50px"
+                android:textColor="#fff" />
+
+            <Button
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:text="13"
+                android:id="@+id/number13"
+                android:background="#15d504"
+                android:visibility="visible"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_column="2"
+                android:layout_margin="5dp"
+                android:textSize="50px"
+                android:textColor="#fff" />
+
+            <Button
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:text="14"
+                android:id="@+id/number14"
+                android:background="#2daeda"
+                android:visibility="visible"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_column="3"
+                android:layout_margin="5dp"
+                android:textSize="50px"
+                android:textColor="#fff" />
+
+            <Button
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:text="15"
+                android:id="@+id/number15"
+                android:background="#e6ba60"
+                android:visibility="visible"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_column="4"
+                android:layout_margin="5dp"
+                android:textSize="50px"
+                android:textColor="#fff" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="0dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="180dp"
+            android:orientation="vertical">
+
+            <Button
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:text="16"
+                android:id="@+id/number16"
+                android:background="#60527a"
+                android:visibility="visible"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_column="0"
+                android:layout_margin="5dp"
+                android:textSize="50px"
+                android:textColor="#fff" />
+
+            <Button
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:text="17"
+                android:id="@+id/number17"
+                android:background="#6b93e3"
+                android:visibility="visible"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_column="1"
+                android:layout_margin="5dp"
+                android:textSize="50px"
+                android:textColor="#fff" />
+
+            <Button
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:text="18"
+                android:id="@+id/number18"
+                android:background="#0ac17b"
+                android:visibility="visible"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_column="2"
+                android:layout_margin="5dp"
+                android:textSize="50px"
+                android:textColor="#fff" />
+
+            <Button
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:text="19"
+                android:id="@+id/number19"
+                android:background="#e89183"
+                android:visibility="visible"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_column="3"
+                android:layout_margin="5dp"
+                android:textSize="50px"
+                android:textColor="#fff" />
+
+            <Button
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:text="20"
+                android:id="@+id/number20"
+                android:background="#b62022"
+                android:visibility="visible"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_column="4"
+                android:layout_margin="5dp"
+                android:textSize="50px"
+                android:textColor="#fff" />
+
+        </TableRow><TableRow
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:id="@+id/frame">
+        android:layout_marginLeft="0dp"
+        android:orientation="vertical"
+        android:layout_marginTop="240dp">
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="60dp"
             android:layout_height="wrap_content"
-            android:text="1"
-            android:id="@+id/number1"
-            android:background="#955151"
-            android:visibility="invisible"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="2"
-            android:id="@+id/number2"
-            android:layout_below="@+id/number1"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginRight="201dp"
-            android:layout_marginEnd="201dp"
-            android:layout_marginTop="56dp"
-            android:visibility="invisible" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="3"
-            android:id="@+id/number3"
-            android:layout_below="@+id/number2"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:visibility="invisible" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="4"
-            android:id="@+id/number4"
-            android:background="#955151"
-            android:visibility="invisible"
+            android:text="21"
+            android:id="@+id/number21"
+            android:background="#6cbd0a"
+            android:visibility="visible"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_gravity="left|top" />
+            android:layout_column="0"
+            android:layout_margin="5dp"
+            android:textSize="50px"
+            android:textColor="#fff" />
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="60dp"
             android:layout_height="wrap_content"
-            android:text="5"
-            android:id="@+id/number5"
-            android:background="#955151"
-            android:visibility="invisible"
+            android:text="22"
+            android:id="@+id/number22"
+            android:background="#f73500"
+            android:visibility="visible"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_gravity="left|top" />
+            android:layout_column="1"
+            android:layout_margin="5dp"
+            android:textSize="50px"
+            android:textColor="#fff" />
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="60dp"
             android:layout_height="wrap_content"
-            android:text="6"
-            android:id="@+id/number6"
-            android:background="#955151"
-            android:visibility="invisible"
+            android:text="23"
+            android:id="@+id/number23"
+            android:background="#c0d200"
+            android:visibility="visible"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_gravity="left|top" />
+            android:layout_column="2"
+            android:layout_margin="5dp"
+            android:textSize="50px"
+            android:textColor="#fff" />
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="60dp"
             android:layout_height="wrap_content"
-            android:text="7"
-            android:id="@+id/number7"
-            android:background="#955151"
-            android:visibility="invisible"
+            android:text="24"
+            android:id="@+id/number24"
+            android:background="#519572"
+            android:visibility="visible"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_gravity="left|top" />
+            android:layout_column="3"
+            android:layout_margin="5dp"
+            android:textSize="50px"
+            android:textColor="#fff" />
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="60dp"
             android:layout_height="wrap_content"
-            android:text="8"
-            android:id="@+id/number8"
-            android:background="#955151"
-            android:visibility="invisible"
+            android:text="25"
+            android:id="@+id/number25"
+            android:background="#419001"
+            android:visibility="visible"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_gravity="left|top" />
+            android:layout_column="4"
+            android:layout_margin="5dp"
+            android:textSize="50px"
+            android:textColor="#fff" />
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="9"
-            android:id="@+id/number9"
-            android:background="#955151"
-            android:visibility="invisible"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_gravity="left|top" />
+    </TableRow>
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="10"
-            android:id="@+id/number10"
-            android:background="#955151"
-            android:visibility="invisible"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_gravity="left|top" />
-    </FrameLayout>
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:id="@+id/textView"
+        android:layout_marginTop="43dp"
+        android:layout_centerHorizontal="true"
+        android:text="Current Number : 0" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:id="@+id/textView2"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Small Text"
+        android:id="@+id/textView3"
+        android:layout_marginTop="40dp"
+        android:layout_below="@+id/textView"
+        android:layout_centerHorizontal="true" />
+
 </RelativeLayout>
