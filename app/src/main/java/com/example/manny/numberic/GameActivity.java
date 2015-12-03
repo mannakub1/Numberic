@@ -1,22 +1,29 @@
 package com.example.manny.numberic;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.widget.Button;
 import android.graphics.Color;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 
 
 public class GameActivity extends AppCompatActivity {
 
+    Timer T  ;
+    int mLevel;
+    TextView textShowTime ;
+    int countTime = 0 ;
+    String key = "Level";
     Random ran = new Random();
     static int level;
     static int currentNum = 0;
@@ -37,6 +44,23 @@ public class GameActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
+
+        T = new Timer();
+        textShowTime = (TextView) findViewById(R.id.showTime);
+        T.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        textShowTime.setText(setShowTime(countTime));
+                        countTime++;
+                    }
+                });
+            }
+        }, 1000, 1000);
+
+
 
         final Button number1 = (Button) findViewById(R.id.number1);
         final Button number2 = (Button) findViewById(R.id.number2);
@@ -68,14 +92,15 @@ public class GameActivity extends AppCompatActivity {
         final TextView timing = (TextView) findViewById(R.id.textView3);
 
         Intent i = getIntent();
-        if (i.getIntExtra("lvl", 1) == 1) {
+        mLevel = i.getIntExtra(key, 1);
+        if (mLevel == 1) {
             lvl.setText("Level : Easy"); //1-25
             level = 1;
             num1st = reset(num1st);
             num2nd = reset(num2nd);
             num3rd = reset(num3rd);
             randomNumber1st();
-        } else if (i.getIntExtra("lvl", 1) == 2) {
+        } else if (mLevel == 2) {
             lvl.setText("Level : Medium"); //1-50
             level = 2;
             num1st = reset(num1st);
@@ -83,7 +108,7 @@ public class GameActivity extends AppCompatActivity {
             num3rd = reset(num3rd);
             randomNumber1st();
             randomNumber2nd();
-        } else {
+        } else if(mLevel == 3){
             lvl.setText("Level : Hard"); //1-75
             level = 3;
             num1st = reset(num1st);
@@ -293,6 +318,7 @@ public class GameActivity extends AppCompatActivity {
                     tv.setText("Current Number : " + currentNum);
                     if (currentNum == 25) {
                         num1st = reset(num1st);
+                        EndGame();
                         //end game of easy mode
                     }
                 } else {
@@ -303,7 +329,7 @@ public class GameActivity extends AppCompatActivity {
                     tv.setText("Current Number : " + currentNum);
                     ++index2nd;
                 }
-            } else { //wrong
+            } else  { //wrong
 
             }
         } else if (currentNum < 50) { //2nd stage
@@ -316,6 +342,7 @@ public class GameActivity extends AppCompatActivity {
                     if (currentNum == 50) {
                         num1st = reset(num1st);
                         num2nd = reset(num2nd);
+                        EndGame();
                         //end game of medium mode
                     }
                 } else {
@@ -342,6 +369,7 @@ public class GameActivity extends AppCompatActivity {
                     num1st = reset(num1st);
                     num2nd = reset(num2nd);
                     num3rd = reset(num3rd);
+                    EndGame();
                     //end game of hard mode
                 }
             } else { //wrong
@@ -349,7 +377,9 @@ public class GameActivity extends AppCompatActivity {
             }
         }
     }
-
+    public String setShowTime(int countTime){
+        return String.format("%02d:%02d", (countTime/60) , countTime % 60);
+    }
     public void randomNumber1st() { //random number stage 1st
         int num, i = 0, c;
         while (true) {
@@ -428,7 +458,6 @@ public class GameActivity extends AppCompatActivity {
         ++index1st;
         btn.startAnimation(fadeIn);
     }
-
     public int randomBGC() {
         int ranColor;
         while (true) {
@@ -446,4 +475,9 @@ public class GameActivity extends AppCompatActivity {
         }
         return preNum;
     }
+    public void EndGame(){
+        T.cancel();
+        finish();
+    }
+
 }
