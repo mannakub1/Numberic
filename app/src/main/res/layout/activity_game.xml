@@ -452,9 +452,9 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:id="@+id/textView"
-        android:text="Current Number : 0"
-        android:layout_below="@+id/textView2"
-        android:layout_centerHorizontal="true" />
+        android:layout_marginTop="43dp"
+        android:layout_centerHorizontal="true"
+        android:text="Current Number : 0" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -473,15 +473,5 @@
         android:layout_marginTop="40dp"
         android:layout_below="@+id/textView"
         android:layout_centerHorizontal="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="00:00"
-        android:id="@+id/showTime"
-        android:layout_below="@+id/textView3"
-        android:layout_alignRight="@+id/frame"
-        android:layout_alignEnd="@+id/frame"
-        android:layout_marginTop="28dp" />
 
 </RelativeLayout>

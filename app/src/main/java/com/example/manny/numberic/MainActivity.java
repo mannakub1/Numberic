@@ -32,8 +32,7 @@ public class MainActivity extends AppCompatActivity {
         highScore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(MainActivity.this, HighScoreActivity.class);
-                startActivity(i);
+                nextPage(HighScoreActivity.class);
                 //
             }
         });
@@ -53,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
                 })
                 .create()
                 .show();
+
     }
 
 
@@ -71,5 +71,6 @@ public class MainActivity extends AppCompatActivity {
         i.putExtra(key, number);
         return i;
     }
+
 
 }

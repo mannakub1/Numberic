@@ -14,7 +14,6 @@ public class model extends SQLiteOpenHelper{
     public static final String TABLE_NAME = "users";
     public static final String COL_ID = "_id";
     public static final String COL_TIME =  "useTime";
-    public static final String COL_SCORE = "score";
     public static final String COL_LEVELS = "levels";
 
     public model(Context context) {
@@ -25,11 +24,10 @@ public class model extends SQLiteOpenHelper{
     public void onCreate(SQLiteDatabase db) {
 
         String sqlCreateTable = String.format("CREATE TABLE %s ("+
-                "%s INTEGER PRIMARY KEY AUTOINCREMENT, "+
-                "%s INTEGER, " +
-                "%s INTEGER, " +
-                "%s STRING);"
-                ,TABLE_NAME, COL_ID,COL_LEVELS,COL_SCORE,COL_TIME);
+                "%s INTEGER PRIMARY KEY AUTOCREMENT, "+
+                "%s DATE" +
+                "%s INTEGER);"
+                ,TABLE_NAME, COL_ID,COL_TIME,COL_TIME);
         db.execSQL(sqlCreateTable);
 
     }
