@@ -478,7 +478,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="00:00"
-        android:id="@+id/shoTime"
+        android:id="@+id/showTime"
         android:layout_below="@+id/textView3"
         android:layout_alignRight="@+id/frame"
         android:layout_alignEnd="@+id/frame"

@@ -20,10 +20,10 @@ public class HighScoreActivity extends AppCompatActivity {
     private model mModel;
     private SQLiteDatabase mDatabase;
     private SimpleCursorAdapter mAdapter;
-    private String COL_LEVELS = model.COL_LEVELS;
-    private String COL_TIME = model.COL_TIME;
-    private String TABLE_NAME = model.TABLE_NAME;
-    private String COL_SCORE = model.COL_SCORE;
+    private static String COL_LEVELS = model.COL_LEVELS;
+    private static String COL_TIME = model.COL_TIME;
+    private static String TABLE_NAME = model.TABLE_NAME;
+    private static String COL_SCORE = model.COL_SCORE;
     private String COL_ID = model.COL_ID;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,11 +33,6 @@ public class HighScoreActivity extends AppCompatActivity {
         mModel = new model(this);
         mDatabase = mModel.getWritableDatabase();
 
-        ContentValues cv = new ContentValues();
-        cv.put(COL_LEVELS , 1);
-        cv.put(COL_SCORE, 10);
-        cv.put(COL_TIME, "00:10");
-        mDatabase.insert(TABLE_NAME,null,cv);
         Cursor cursor = readAllData();
         mAdapter = new SimpleCursorAdapter(this, android.R.layout.simple_list_item_1 , cursor,
                                             new String[]{COL_TIME},
@@ -59,6 +54,7 @@ public class HighScoreActivity extends AppCompatActivity {
                 };
 
                 Cursor cursor = mDatabase.rawQuery("SELECT * FROM "+ TABLE_NAME +" WHERE "+ COL_LEVELS + " =? " +" ORDER BY "+ COL_SCORE +" LIMIT 10 ",new String[]{"1"});
+               
                 mAdapter.changeCursor(cursor);
             }
         });
@@ -92,11 +88,12 @@ public class HighScoreActivity extends AppCompatActivity {
 
     }
 
+
     private Cursor readAllData() {
         String[] columns = {
                 model.COL_ID,COL_LEVELS,COL_SCORE,COL_TIME
         } ;
-        Cursor cursor = mDatabase.query(TABLE_NAME,columns,null,null,null,null,null);
+        Cursor cursor = mDatabase.rawQuery("SELECT * FROM "+ TABLE_NAME  +" ORDER BY "+ COL_SCORE +" LIMIT 10 ",null);
 
         return cursor;
     }

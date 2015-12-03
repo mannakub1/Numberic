@@ -1,6 +1,8 @@
 package com.example.manny.numberic;
 
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -10,7 +12,10 @@ import android.view.animation.AccelerateInterpolator;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.Button;
+import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
+
+import com.example.manny.numberic.model.model;
 
 import java.util.Random;
 import java.util.Timer;
@@ -19,10 +24,16 @@ import java.util.TimerTask;
 
 public class GameActivity extends AppCompatActivity {
 
+    private static String COL_LEVELS = model.COL_LEVELS;
+    private static String COL_TIME = model.COL_TIME;
+    private static String TABLE_NAME = model.TABLE_NAME;
+    private static String COL_SCORE = model.COL_SCORE;
+    private  SQLiteDatabase mDatabase;
+    private SimpleCursorAdapter mAdapter;
     Timer T  ;
     int mLevel;
     TextView textShowTime ;
-    int countTime = 0 ;
+    int countTime ;
     String key = "Level";
     Random ran = new Random();
     static int level;
@@ -378,7 +389,7 @@ public class GameActivity extends AppCompatActivity {
         }
     }
     public String setShowTime(int countTime){
-        return String.format("%02d:%02d", (countTime/60) , countTime % 60);
+        return String.format("%02d:%02d", (countTime/60)%60 , countTime % 60);
     }
     public void randomNumber1st() { //random number stage 1st
         int num, i = 0, c;
@@ -477,7 +488,23 @@ public class GameActivity extends AppCompatActivity {
     }
     public void EndGame(){
         T.cancel();
+        model mModel = new model(this);
+        mDatabase = mModel.getWritableDatabase();
+        mDatabase.insert(TABLE_NAME, null, AddDatabase(mLevel, --countTime, setShowTime(--countTime)));
         finish();
     }
+
+    public static ContentValues AddDatabase(int mLevel, int i, String s) {
+        ContentValues cv = new ContentValues();
+        cv.put(COL_LEVELS,mLevel);
+        cv.put(COL_SCORE,i);
+        cv.put(COL_TIME,s);
+        return cv;
+    }
+
+
+
+
+
 
 }
