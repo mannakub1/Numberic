@@ -1,23 +1,17 @@
 package com.example.manny.numberic;
 
-import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
+import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.SimpleCursorAdapter;
-
-import com.example.manny.numberic.R;
-import com.example.manny.numberic.model.model;
 
 public class MainActivity extends AppCompatActivity {
 
-    private String[] Level = {"Easy", "Medium", "Hard"};
+    private String[] listLevel = {"Easy", "Medium", "Hard"};
 
 
     @Override
@@ -40,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(MainActivity.this, HighScoreActivity.class);
                 startActivity(i);
+                //
             }
         });
 
@@ -49,28 +44,32 @@ public class MainActivity extends AppCompatActivity {
     public void select_level() {
         new AlertDialog.Builder(MainActivity.this)
                 .setTitle("Please Select Level")
-                .setItems(Level, new DialogInterface.OnClickListener() {
+                .setItems(listLevel, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        String select = Level[which];
-                        if (select.equals("Easy")) {
-                            Intent i = new Intent(MainActivity.this, GameActivity.class);;
-                            i.putExtra("lvl", 1);
-                            startActivity(i);
-                        } else if (select.equals("Medium")) {
-                            Intent i = new Intent(MainActivity.this, GameActivity.class);
-                            i.putExtra("lvl", 2);
-                            startActivity(i);
-                        } else {
-                            Intent i = new Intent(MainActivity.this, GameActivity.class);
-                            i.putExtra("lvl", 3);
-                            startActivity(i);
-                        }
+                        Log.i("Level", String.valueOf(which + 1));
+                        nextPage(which + 1, GameActivity.class);
                     }
                 })
                 .create()
                 .show();
     }
 
+
+    private void nextPage(Class str) {
+        Intent i = new Intent(MainActivity.this, str);
+        startActivity(i);
+    }
+
+    private void nextPage(int number, Class str) {
+        Intent i = new Intent(MainActivity.this, GameActivity.class);
+        i = putExtra(i, "Level", number);
+        startActivity(i);
+    }
+
+    private Intent putExtra(Intent i, String key, int number) {
+        i.putExtra(key, number);
+        return i;
+    }
 
 }

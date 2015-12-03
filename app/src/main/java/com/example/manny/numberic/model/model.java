@@ -11,12 +11,12 @@ public class model extends SQLiteOpenHelper{
 
     private static final String DATABASE_NAME = "numeric.db";
     private static final int DATABASE_VERSION = 1;
-    private static final String TABLE_NAME = "users";
+    public static final String TABLE_NAME = "users";
     public static final String COL_ID = "_id";
     public static final String COL_TIME =  "useTime";
     public static final String COL_LEVELS = "levels";
 
-    public model(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
+    public model(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 

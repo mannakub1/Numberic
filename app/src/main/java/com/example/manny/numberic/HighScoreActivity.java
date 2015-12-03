@@ -15,6 +15,8 @@ import com.example.manny.numberic.model.model;
 
 public class HighScoreActivity extends AppCompatActivity {
 
+    private static final String TAG = "HighScoreActivity";
+
     private ContentValues cv;
     private model mModel;
     private SQLiteDatabase mDatabase;
@@ -25,10 +27,13 @@ public class HighScoreActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_high_score);
 
-        
+        mModel = new model(this);
+        mDatabase = mModel.getWritableDatabase();
 
-       // final ListView listView = (ListView) findViewById(R.id.highscore_listView);
-       // listView.setAdapter(mAdapter);
+        Cursor cursor = readAllData();
+        // mAdapter = new SimpleCursorAdapter(this,and)
+        // final ListView listView = (ListView) findViewById(R.id.highscore_listView);
+        // listView.setAdapter(mAdapter);
 
 
         Button easy = (Button) findViewById(R.id.easy_button);
@@ -53,7 +58,13 @@ public class HighScoreActivity extends AppCompatActivity {
 
     }
 
-
+    private Cursor readAllData() {
+        String[] columns = {
+                model.COL_ID,model.COL_TIME,model.COL_TIME
+        } ;
+        Cursor cursor = mDatabase.query(model.TABLE_NAME,columns,null,null,null,null,null);
+        return cursor;
+    }
 
 
 }
