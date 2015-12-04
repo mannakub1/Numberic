@@ -25,6 +25,7 @@ public class HighScoreActivity extends AppCompatActivity {
     private static String TABLE_NAME = model.TABLE_NAME;
     private static String COL_SCORE = model.COL_SCORE;
     private String COL_ID = model.COL_ID;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,9 +35,9 @@ public class HighScoreActivity extends AppCompatActivity {
         mDatabase = mModel.getWritableDatabase();
 
         Cursor cursor = readAllData();
-        mAdapter = new SimpleCursorAdapter(this, android.R.layout.simple_list_item_1 , cursor,
-                                            new String[]{COL_TIME},
-                                            new int[] {android.R.id.text1});
+        mAdapter = new SimpleCursorAdapter(this, R.layout.listview_layout , cursor,
+                new String[]{COL_TIME},
+                new int[] {R.id.showTime});
         ListView listView = (ListView) findViewById(R.id.highscore_listView);
         listView.setAdapter(mAdapter);
         // mAdapter = new SimpleCursorAdapter(this,and)

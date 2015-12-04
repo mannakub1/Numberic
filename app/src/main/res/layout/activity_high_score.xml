@@ -8,7 +8,8 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
 
-    tools:context="com.example.manny.numberic.HighScoreActivity">
+    tools:context="com.example.manny.numberic.HighScoreActivity"
+    android:background="#40826D">
 
     <Button
         android:layout_width="wrap_content"
@@ -17,7 +18,8 @@
         android:id="@+id/easy_button"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:background="#b2b2b2" />
 
     <Button
         android:layout_width="wrap_content"
@@ -25,7 +27,8 @@
         android:text="Medium"
         android:id="@+id/medium_button"
         android:layout_alignTop="@+id/easy_button"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:background="#b2b2b2" />
 
     <Button
         android:layout_width="wrap_content"
@@ -34,7 +37,8 @@
         android:id="@+id/hard_button"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:background="#b2b2b2" />
 
     <ListView
         android:layout_width="wrap_content"
@@ -44,6 +48,6 @@
         android:layout_alignParentEnd="true"
         android:layout_below="@+id/easy_button"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="30dp"/>
+        android:layout_marginTop="30dp" />
 
 </RelativeLayout>

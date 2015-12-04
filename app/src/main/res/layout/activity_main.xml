@@ -31,7 +31,7 @@
         android:textSize="25dp"
         android:layout_above="@+id/HighScore_button"
         android:layout_centerHorizontal="true"
-        android:background="#64cbe4"
+        android:background="@drawable/button_boarder"
         android:layout_marginBottom="15dp" />
 
     <Button
@@ -41,7 +41,7 @@
         android:id="@+id/HighScore_button"
         android:textSize="25dp"
         android:layout_marginBottom="40dp"
-        android:background="#64cbe4"
+        android:background="@drawable/button_boarder"
         android:layout_alignParentBottom="true"
         android:layout_alignLeft="@+id/imageView"
         android:layout_alignStart="@+id/imageView" />
