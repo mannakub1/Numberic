@@ -787,7 +787,6 @@ public class GameActivity extends AppCompatActivity {
         number24.setVisibility(View.VISIBLE);
         number25.setVisibility(View.VISIBLE);
 
-        String[] ok = new String[] {"OK"};
         T.cancel();
         model mModel = new model(this);
         mDatabase = mModel.getWritableDatabase();

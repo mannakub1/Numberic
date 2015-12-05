@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    // For GameActivity
+    // To GameActivity
     public void select_level() {
         new AlertDialog.Builder(MainActivity.this)
                 .setTitle("Please Select Level")
