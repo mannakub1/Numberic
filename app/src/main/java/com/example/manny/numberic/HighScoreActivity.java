@@ -31,6 +31,7 @@ public class HighScoreActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_high_score);
 
+
         mModel = new model(this);
         mDatabase = mModel.getWritableDatabase();
 

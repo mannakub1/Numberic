@@ -455,7 +455,8 @@
         android:id="@+id/textView"
         android:layout_marginTop="43dp"
         android:layout_centerHorizontal="true"
-        android:text="Current Number : 0" />
+        android:text="Current Number : 0"
+        android:textSize="20dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -463,10 +464,11 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:id="@+id/textView2"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:textSize="20dp" />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Small Text"
@@ -474,6 +476,7 @@
         android:layout_marginTop="40dp"
         android:layout_below="@+id/textView"
         android:layout_toRightOf="@+id/textView"
-        android:layout_toEndOf="@+id/textView" />
+        android:layout_toEndOf="@+id/textView"
+        android:textSize="20dp" />
 
 </RelativeLayout>
