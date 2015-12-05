@@ -56,7 +56,7 @@ public class HighScoreActivity extends AppCompatActivity {
                 };
 
                 Cursor cursor = mDatabase.rawQuery("SELECT * FROM "+ TABLE_NAME +" WHERE "+ COL_LEVELS + " =? " +" ORDER BY "+ COL_SCORE +" LIMIT 10 ",new String[]{"1"});
-               
+
                 mAdapter.changeCursor(cursor);
             }
         });
@@ -95,7 +95,7 @@ public class HighScoreActivity extends AppCompatActivity {
         String[] columns = {
                 model.COL_ID,COL_LEVELS,COL_SCORE,COL_TIME
         } ;
-        Cursor cursor = mDatabase.rawQuery("SELECT * FROM "+ TABLE_NAME  +" ORDER BY "+ COL_SCORE +" LIMIT 10 ",null);
+        Cursor cursor = mDatabase.rawQuery("SELECT * FROM "+ TABLE_NAME +" WHERE "+ COL_LEVELS + " =? " +" ORDER BY "+ COL_SCORE +" LIMIT 10 ",new String[]{"1"});
 
         return cursor;
     }
