@@ -1,6 +1,7 @@
 package com.example.manny.numberic;
 
 import android.content.ContentValues;
+import android.content.DialogInterface;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -65,10 +66,10 @@ public class HighScoreActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String[] columns = {
-                        model.COL_ID,COL_LEVELS, COL_TIME
+                        model.COL_ID, COL_LEVELS, COL_TIME
                 };
 
-                Cursor cursor = mDatabase.rawQuery("SELECT * FROM "+ TABLE_NAME +" WHERE "+ COL_LEVELS + " =? " +" ORDER BY "+ COL_SCORE +" LIMIT 10 ",new String[]{"2"});
+                Cursor cursor = mDatabase.rawQuery("SELECT * FROM " + TABLE_NAME + " WHERE " + COL_LEVELS + " =? " + " ORDER BY " + COL_SCORE + " LIMIT 10 ", new String[]{"2"});
                 mAdapter.changeCursor(cursor);
             }
         });
@@ -85,7 +86,31 @@ public class HighScoreActivity extends AppCompatActivity {
             }
         });
 
+        Button btnReset = (Button) findViewById(R.id.btn_reset);
+        btnReset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new android.support.v7.app.AlertDialog.Builder(HighScoreActivity.this)
+                        .setTitle("Do you want to delete all record ?")
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                mDatabase.delete(TABLE_NAME,null,null);
+                                Cursor cursor = readAllData();
+                                mAdapter.changeCursor(cursor);
+                            }
+                        })
+                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
 
+                            }
+                        })
+                        .create()
+                        .show();
+
+            }
+        });
 
 
     }
