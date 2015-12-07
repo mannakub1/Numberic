@@ -350,7 +350,7 @@ public class GameActivity extends AppCompatActivity {
     }
 
     public void newGame(int levels){
-        mLevel = level;
+        mLevel = levels;
         countTime = 0;
         T = new Timer();
         textShowTime = (TextView) findViewById(R.id.showTime);
